@@ -1,0 +1,7 @@
+*.log
+build-*.log
+libs/
+docs/*.txt
+cc-javap.txt
+gradle.properties.pre-build-backup
+build.gradle.pre-build-backup

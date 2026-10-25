@@ -1,0 +1,28 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "dev.modmind.neo_eco_cpu_ex.mixin",
+  "compatibilityLevel": "JAVA_21",
+  "mixins": [
+    "NEComputationClusterMixin",
+    "NEComputationNetworkClusterMixin",
+    "ECOCraftingCPUMixin",
+    "ECOComputationSystemBlockEntityMixin",
+    "ComputationCpuEntryMixin",
+    "CraftingCPURecordAccessor",
+    "CraftingStatusMenuStorageMixin",
+    "CraftConfirmMenuStorageMixin",
+    "NEByteFormatterMixin",
+    "ECOBigOrderAdmissionMixin"
+  ],
+  "client": [
+    "ComputationControllerArtworkMixin"
+  ],
+  "server": [],
+  "injectors": {
+    "defaultRequire": 1
+  },
+  "mixinextras": {
+    "minVersion": "0.5.3"
+  }
+}

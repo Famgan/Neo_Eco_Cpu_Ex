@@ -1,0 +1,42 @@
+modLoader="javafml"
+loaderVersion="[4,)"
+license="MIT"
+
+[[mods]]
+modId="neo_eco_cpu_ex"
+version="${version}"
+displayName="无界算核 (Neo Eco Cpu Ex)"
+authors="Famgan"
+# NeoForge 1.21.1 (21.1.262) reads logoFile for the mod-list logo.
+# These two aliases are for newer metadata consumers and are ignored here.
+logoFile="icon.png"
+iconFile="icon.png"
+bannerFile="icon.png"
+logoBlur=false
+description='''无界算核（Neo Eco Cpu Ex）：突破 Neo ECO AE 的 long 容量上限，为超大合成订单提供无限容量、自动排队与防溢出显示。'''
+
+[[mixins]]
+config="myecocpu.mixins.json"
+
+[[dependencies.neo_eco_cpu_ex]]
+modId="neoforge"
+type="required"
+versionRange="[21.1.244,)"
+ordering="NONE"
+side="BOTH"
+
+[[dependencies.neo_eco_cpu_ex]]
+modId="minecraft"
+type="required"
+versionRange="[1.21.1]"
+ordering="NONE"
+side="BOTH"
+
+# MODMIND ADDON RELATIONSHIPS START
+[[dependencies.neo_eco_cpu_ex]]
+modId="neoecoae"
+type="required"
+versionRange="[21.2.9]"
+ordering="AFTER"
+side="BOTH"
+# MODMIND ADDON RELATIONSHIPS END

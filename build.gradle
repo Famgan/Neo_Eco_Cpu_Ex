@@ -1,0 +1,72 @@
+plugins {
+    id 'java-library'
+    id 'maven-publish'
+    id 'net.neoforged.moddev' version '2.0.78'
+}
+
+version = project.mod_version
+group = project.maven_group
+
+base {
+    archivesName = project.archives_base_name
+}
+
+tasks.withType(JavaCompile).configureEach {
+    options.encoding = 'UTF-8'
+    options.release = 21
+}
+
+java {
+    toolchain.languageVersion = JavaLanguageVersion.of(21)
+    withSourcesJar()
+}
+
+neoForge {
+    version = project.neo_version
+    runs {
+        client { client() }
+        server {
+            server()
+            programArgument '--nogui'
+        }
+        gameTestServer {
+            type = 'gameTestServer'
+            systemProperty 'neoforge.enabledGameTestNamespaces', 'neo_eco_cpu_ex'
+        }
+    }
+    mods {
+        "neo_eco_cpu_ex" { sourceSet(sourceSets.main) }
+    }
+}
+
+processResources {
+    filteringCharset = 'UTF-8'
+    inputs.property 'version', project.version
+    filesMatching('META-INF/neoforge.mods.toml') { expand version: project.version }
+}
+
+jar {
+    manifest {
+        attributes(
+            'ModIcon': 'icon.png',
+            'Logo-File': 'icon.png',
+            'Implementation-Version': project.version,
+            'Implementation-Vendor': 'Famgan'
+        )
+    }
+}
+
+tasks.configureEach {
+    if (name in ['runClient', 'runServer', 'runGameTestServer']) {
+        dependsOn 'processResources', 'classes'
+    }
+}
+
+dependencies {
+// MODMIND DEPENDENCIES START
+    compileOnly files('libs/modmind/neoecoae-21.2.9.jar')
+    compileOnly files('libs/modmind/appliedenergistics2-19.2.18.jar')
+    compileOnly files('libs/modmind/ldlib2-neoforge-1.21.1-2.2.44-all.jar')
+    compileOnly files('libs/modmind/guideme-21.1.20.jar')
+// MODMIND DEPENDENCIES END
+}
